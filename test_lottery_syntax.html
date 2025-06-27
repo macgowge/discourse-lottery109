@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖语法测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-case {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .syntax {
+            background: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 10px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 3px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .success {
+            color: #28a745;
+        }
+        .error {
+            color: #dc3545;
+        }
+        .warning {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎲 Discourse 抽奖插件语法测试</h1>
+    
+    <div class="note">
+        <strong>📋 使用说明:</strong>
+        <ul>
+            <li>复制下面的语法到 Discourse 帖子中</li>
+            <li>必须在主题的第一个帖子中使用</li>
+            <li>确保插件已启用且 lottery_enabled 设置为 true</li>
+        </ul>
+    </div>
+
+    <h2>✅ 推荐测试顺序</h2>
+
+    <div class="test-case">
+        <h3>1. 最简单测试</h3>
+        <p>先测试这个最基本的语法：</p>
+        <div class="syntax">[在此创建抽奖]</div>
+        <p class="success">✅ 如果这个有效，说明插件基础功能正常</p>
+    </div>
+
+    <div class="test-case">
+        <h3>2. 基础参数测试</h3>
+        <p>如果上面有效，再测试基础参数：</p>
+        <div class="syntax">[lottery title="测试抽奖" prize="测试奖品"]</div>
+        <p class="success">✅ 测试基本参数解析</p>
+    </div>
+
+    <div class="test-case">
+        <h3>3. 免费抽奖测试</h3>
+        <div class="syntax">[lottery title="免费抽奖" prize="100积分" cost="0" max="20"]</div>
+        <p class="success">✅ 测试免费抽奖功能</p>
+    </div>
+
+    <div class="test-case">
+        <h3>4. 付费抽奖测试</h3>
+        <div class="syntax">[lottery title="我的抽奖" prize="iPhone 15" cost="100" max="50"]</div>
+        <p class="warning">⚠️ 需要用户有足够积分</p>
+    </div>
+
+    <div class="test-case">
+        <h3>5. 多奖品测试</h3>
+        <div class="syntax">[lottery title="三重大奖" prize="现金红包" count="3" cost="50"]</div>
+        <p class="success">✅ 测试多奖品功能</p>
+    </div>
+
+    <div class="test-case">
+        <h3>6. 定时抽奖测试</h3>
+        <div class="syntax">[lottery title="定时抽奖" prize="MacBook" auto_draw="2h"]</div>
+        <p class="success">✅ 测试自动开奖功能</p>
+    </div>
+
+    <h2>🔍 故障排除检查清单</h2>
+
+    <div class="test-case">
+        <h3>管理面板检查</h3>
+        <ol>
+            <li>访问 <strong>管理面板 → 插件</strong></li>
+            <li>查找 "discourse-lottery" 或包含 "lottery" 的插件</li>
+            <li>确保状态显示为 <span class="success">"已启用"</span></li>
+            <li>如果没有找到，说明插件未正确安装</li>
+        </ol>
+    </div>
+
+    <div class="test-case">
+        <h3>站点设置检查</h3>
+        <ol>
+            <li>访问 <strong>管理面板 → 设置</strong></li>
+            <li>搜索 "lottery"</li>
+            <li>找到 <code>lottery_enabled</code> 设置</li>
+            <li>确保设置为 <span class="success">true</span> 或 <span class="success">"启用"</span></li>
+        </ol>
+    </div>
+
+    <div class="test-case">
+        <h3>浏览器控制台检查</h3>
+        <ol>
+            <li>在抽奖帖子页面按 <strong>F12</strong></li>
+            <li>切换到 <strong>Console</strong> 标签</li>
+            <li>刷新页面</li>
+            <li>查看是否有 <span class="error">红色错误信息</span></li>
+            <li>特别注意包含 "lottery" 的错误</li>
+        </ol>
+    </div>
+
+    <div class="test-case">
+        <h3>帖子位置检查</h3>
+        <ul>
+            <li class="success">✅ 在主题的第一个帖子中</li>
+            <li class="error">❌ 不能在回复中</li>
+            <li class="error">❌ 不能在私信中</li>
+            <li class="error">❌ 不能在草稿中</li>
+        </ul>
+    </div>
+
+    <h2>🚨 常见问题解决</h2>
+
+    <div class="test-case">
+        <h3>问题1: 显示原始文本</h3>
+        <p><strong>症状:</strong> 页面显示 <code>[lottery ...]</code> 而不是抽奖界面</p>
+        <p><strong>原因:</strong> 解析器未工作或 JavaScript 未加载</p>
+        <p><strong>解决:</strong></p>
+        <ul>
+            <li>检查插件是否启用</li>
+            <li>检查 lottery_enabled 设置</li>
+            <li>重启 Discourse</li>
+        </ul>
+    </div>
+
+    <div class="test-case">
+        <h3>问题2: 没有任何显示</h3>
+        <p><strong>症状:</strong> 帖子中什么都没有显示</p>
+        <p><strong>原因:</strong> 语法错误或位置错误</p>
+        <p><strong>解决:</strong></p>
+        <ul>
+            <li>检查语法是否完全正确</li>
+            <li>确保在主题第一个帖子中</li>
+            <li>尝试最简单的语法</li>
+        </ul>
+    </div>
+
+    <div class="test-case">
+        <h3>问题3: JavaScript 错误</h3>
+        <p><strong>症状:</strong> 浏览器控制台有错误</p>
+        <p><strong>解决:</strong></p>
+        <ul>
+            <li>清除浏览器缓存</li>
+            <li>强制刷新 (Ctrl+F5)</li>
+            <li>尝试无痕模式</li>
+        </ul>
+    </div>
+
+    <h2>📞 需要帮助？</h2>
+
+    <div class="note">
+        <p>如果按照上述步骤仍然无法解决问题，请提供以下信息：</p>
+        <ul>
+            <li>🖥️ 浏览器控制台的完整错误信息</li>
+            <li>📊 管理面板中插件的状态截图</li>
+            <li>⚙️ lottery_enabled 设置的截图</li>
+            <li>📝 您使用的确切语法</li>
+            <li>📍 帖子的位置（第一个帖子还是回复）</li>
+            <li>🔧 Discourse 版本信息</li>
+        </ul>
+    </div>
+
+    <div class="test-case">
+        <h3>快速重启命令</h3>
+        <div class="syntax">
+# 重启 Discourse
+./launcher restart app
+
+# 如果重启无效，尝试重建
+./launcher rebuild app
+        </div>
+    </div>
+
+</body>
+</html>

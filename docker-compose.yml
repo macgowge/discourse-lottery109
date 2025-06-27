@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  discourse:
+    image: discourse/discourse_dev:release
+    container_name: discourse-lottery-test
+    ports:
+      - "4000:4000"
+    volumes:
+      - /Users/robert/code/cfpages/discourse-lottery:/var/www/discourse/plugins/discourse-lottery:ro
+      - discourse_data:/shared
+    environment:
+      - DISCOURSE_HOSTNAME=localhost:4000
+      - DISCOURSE_DEVELOPER_EMAILS=admin@localhost
+      - DISCOURSE_DB_HOST=db
+      - DISCOURSE_REDIS_HOST=redis
+      - RAILS_ENV=development
+    depends_on:
+      - db
+      - redis
+    command: >
+      bash -c "
+        cd /var/www/discourse &&
+        bundle install &&
+        bundle exec rake db:create db:migrate &&
+        bundle exec rake assets:precompile &&
+        bundle exec rails server -b 0.0.0.0 -p 4000
+      "
+
+  db:
+    image: postgres:13
+    container_name: discourse-postgres
+    environment:
+      - POSTGRES_DB=discourse_development
+      - POSTGRES_USER=discourse
+      - POSTGRES_PASSWORD=discourse
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6-alpine
+    container_name: discourse-redis
+    volumes:
+      - redis_data:/data
+
+volumes:
+  discourse_data:
+  postgres_data:
+  redis_data:
