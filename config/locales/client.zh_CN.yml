@@ -18,22 +18,3 @@ zh_CN:
       generic_error_client: "发生错误，请重试。" # 客户端通用错误
       network_error_client: "网络连接错误，请检查您的网络并重试。"
       csrf_token_error: "无法验证您的请求。请刷新页面后重试。"
-      # 开奖相关
-      admin_draw_btn: "开奖"
-      confirm_draw: "确定要开奖吗？当前有 %{entries} 人参与。"
-      drawing: "正在开奖..."
-      draw_success: "开奖成功！"
-      draw_failed: "开奖失败，请重试。"
-      draw_completed: "开奖已完成"
-      winner_announced: "🎉 恭喜 @%{winner} 获奖！"
-      winners_announced: "🎉 恭喜以下 %{count} 位获奖者！"
-      lottery_cancelled: "抽奖已取消"
-      # 奖品相关
-      prize_with_count: "%{prizeName} (共%{count}份)"
-      # 自动开奖倒计时
-      auto_draw_in: "自动开奖倒计时:"
-      auto_draw_time_up: "时间到！正在自动开奖..."
-      countdown_days: "%{days}天 %{hours}小时 %{minutes}分钟 %{seconds}秒"
-      countdown_hours: "%{hours}小时 %{minutes}分钟 %{seconds}秒"
-      countdown_minutes: "%{minutes}分钟 %{seconds}秒"
-      countdown_seconds: "%{seconds}秒"

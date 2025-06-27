@@ -10,7 +10,6 @@
 enabled_site_setting :lottery_enabled
 
 register_asset "stylesheets/common/lottery.scss"
-register_asset "javascripts/discourse/initializers/lottery.js.es6"
 
 after_initialize do
   Rails.logger.info "LotteryPlugin: =================== START of after_initialize (v1.0.9) ==================="
@@ -28,12 +27,10 @@ after_initialize do
     # 确保在这里加载所有依赖，避免 NameError
     require_relative "app/models/lottery_plugin/lottery"
     require_relative "app/models/lottery_plugin/lottery_entry"
-    require_relative "app/models/lottery_plugin/lottery_winner"
-    Rails.logger.info "LotteryPlugin: Models loaded (Lottery, LotteryEntry, LotteryWinner)."
+    Rails.logger.info "LotteryPlugin: Models loaded (Lottery, LotteryEntry)."
 
     require_relative "lib/lottery_plugin/parser"
-    require_relative "app/jobs/lottery_auto_draw_job"
-    Rails.logger.info "LotteryPlugin: Parser lib and jobs loaded."
+    Rails.logger.info "LotteryPlugin: Parser lib loaded."
 
     DiscourseEvent.on(:post_process_cooked) do |doc, post|
       begin
@@ -48,18 +45,10 @@ after_initialize do
     Rails.logger.info "LotteryPlugin: :post_process_cooked event handler registered."
 
     require_relative "app/controllers/lottery_plugin/entries_controller"
-    require_relative "app/controllers/lottery_plugin/admin_controller"
-    Rails.logger.info "LotteryPlugin: Controllers loaded."
+    Rails.logger.info "LotteryPlugin: EntriesController loaded."
 
     LotteryPlugin::Engine.routes.draw do
       post "/entries" => "entries#create"
-
-      # 管理员路由
-      namespace :admin do
-        post "/draw/:lottery_id" => "admin#draw"
-        post "/cancel/:lottery_id" => "admin#cancel"
-        get "/status/:lottery_id" => "admin#status"
-      end
     end
     Rails.logger.info "LotteryPlugin: Engine routes drawn."
 
@@ -93,18 +82,6 @@ after_initialize do
             points_cost: lottery.points_cost,
             max_entries: lottery.max_entries,
             total_entries: lottery.entries.count, # 这可能会触发 N+1 查询，但对于调试是可接受的
-            prize_count: lottery.prize_count,
-            status: lottery.status,
-            winner_id: lottery.winner_user_id,
-            winner_username: lottery.winner&.username,
-            winners: lottery.formatted_winners,
-            multiple_prizes: lottery.multiple_prizes?,
-            actual_winner_count: lottery.actual_winner_count,
-            drawn_at: lottery.drawn_at,
-            can_draw: lottery.can_draw?,
-            auto_draw_enabled: lottery.auto_draw_enabled?,
-            auto_draw_at: lottery.auto_draw_at,
-            auto_draw_status: lottery.auto_draw_status_text
           }
         else
           # Rails.logger.debug "LotteryPlugin Serializer: No lottery found for post #{post_object.id}"

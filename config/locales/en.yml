@@ -12,39 +12,4 @@ en:
       transaction_failed: "Could not complete your participation due to a transaction error. Please try again."
       points_system_error: "There was an issue with the points system. Could not deduct points."
       generic_error: "An unexpected error occurred. Please try again." # Server-side generic
-      # Draw related errors
-      already_completed: "Lottery has already been completed."
-      already_cancelled: "Lottery has been cancelled."
-      no_participants: "No participants to draw from."
-      cannot_draw: "Cannot draw winner at this time."
-      draw_failed: "Failed to draw winner."
-      cannot_cancel: "Cannot cancel this lottery."
-      cancel_failed: "Failed to cancel lottery."
-      admin_required: "Admin privileges required."
-    admin:
-      draw_success: "Winner drawn successfully!"
-      cancel_success: "Lottery cancelled successfully."
-    auto_draw:
-      completed: "Auto draw completed"
-      ready: "Ready for auto draw"
-      days_left:
-        one: "%{count} day left"
-        other: "%{count} days left"
-      hours_left:
-        one: "%{count} hour left"
-        other: "%{count} hours left"
-      minutes_left:
-        one: "%{count} minute left"
-        other: "%{count} minutes left"
-      seconds_left:
-        one: "%{count} second left"
-        other: "%{count} seconds left"
-    ranks:
-      first_prize: "1st Prize"
-      second_prize: "2nd Prize"
-      third_prize: "3rd Prize"
-      nth_prize: "%{rank}th Prize"
-      first: "1st"
-      second: "2nd"
-      third: "3rd"
-      nth: "%{rank}th"
+      # network_error key moved to client.en.yml as it's primarily a client-side concern

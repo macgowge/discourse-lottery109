@@ -1,14 +1,5 @@
 // Discourse 抽奖插件的样式
 
-.lottery-container {
-  margin: 15px 0;
-  padding: 0;
-
-  .lottery-box {
-    // 继承原有样式
-  }
-}
-
 .lottery-box {
   border: 1px solid var(--primary-low); // 边框颜色使用CSS变量
   background-color: var(--secondary-very-low); // 背景颜色
@@ -50,151 +41,17 @@
     }
   }
 
-  .lottery-button-area {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-top: 10px;
-  }
-
   .join-lottery-btn {
     // 默认使用 Discourse 的 .btn .btn-primary 样式
     padding: 8px 15px; // 内边距
     cursor: pointer; // 鼠标指针样式
+    align-self: flex-start; // 按钮左对齐
 
     &:disabled {
       cursor: not-allowed; // 禁用时的鼠标指针
       background-color: var(--primary-low) !important; // 确保覆盖默认的禁用背景色
       color: var(--primary-medium) !important; // 确保覆盖默认的禁用文字颜色
     }
-  }
-
-  .admin-draw-btn {
-    // 管理员开奖按钮样式
-    padding: 8px 15px;
-    cursor: pointer;
-
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-  }
-
-  .lottery-winner-display {
-    background-color: var(--success-low);
-    color: var(--success);
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .lottery-winners-display {
-    background-color: var(--success-low);
-    color: var(--success);
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-
-    .lottery-winners-title {
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1.1em;
-    }
-
-    .lottery-winners-list {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .lottery-winner-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 5px 10px;
-      background-color: var(--success);
-      color: var(--secondary);
-      border-radius: 3px;
-      font-weight: 500;
-
-      .winner-rank {
-        font-weight: bold;
-        color: var(--gold, #ffd700);
-      }
-
-      .winner-username {
-        font-weight: bold;
-      }
-    }
-  }
-
-  .prize-count {
-    color: var(--primary-medium);
-    font-weight: normal;
-    font-size: 0.9em;
-  }
-
-  .lottery-cancelled-display {
-    background-color: var(--danger-low);
-    color: var(--danger);
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .lottery-countdown-display {
-    background-color: var(--tertiary-low);
-    color: var(--tertiary);
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-    font-family: monospace;
-    border: 1px solid var(--tertiary-medium);
-
-    &.lottery-countdown-expired {
-      background-color: var(--highlight-low);
-      color: var(--highlight);
-      border-color: var(--highlight);
-      animation: pulse 1s infinite;
-    }
-  }
-
-  @keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.7; }
-    100% { opacity: 1; }
-  }
-
-  .lottery-countdown-display {
-    background-color: var(--tertiary-low);
-    color: var(--tertiary);
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-    font-family: monospace;
-    border: 1px solid var(--tertiary-medium);
-
-    &.lottery-countdown-expired {
-      background-color: var(--highlight-low);
-      color: var(--highlight);
-      border-color: var(--highlight);
-      animation: pulse 1s infinite;
-    }
-  }
-
-  @keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.7; }
-    100% { opacity: 1; }
   }
 
   .lottery-message-area {
