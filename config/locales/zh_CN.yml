@@ -12,4 +12,39 @@ zh_CN:
       transaction_failed: "由于事务错误，无法完成您的参与。请重试。"
       points_system_error: "积分系统出现问题，无法扣除积分。"
       generic_error: "发生意外错误，请重试。" # 服务器端通用错误
-      # network_error 键移至 client.zh_CN.yml 因为它主要是客户端关注的问题
+      # 开奖相关错误
+      already_completed: "抽奖已经完成。"
+      already_cancelled: "抽奖已被取消。"
+      no_participants: "没有参与者，无法开奖。"
+      cannot_draw: "当前无法开奖。"
+      draw_failed: "开奖失败。"
+      cannot_cancel: "无法取消此抽奖。"
+      cancel_failed: "取消抽奖失败。"
+      admin_required: "需要管理员权限。"
+    admin:
+      draw_success: "开奖成功！"
+      cancel_success: "抽奖已取消。"
+    auto_draw:
+      completed: "自动开奖已完成"
+      ready: "准备自动开奖"
+      days_left:
+        one: "还有 %{count} 天"
+        other: "还有 %{count} 天"
+      hours_left:
+        one: "还有 %{count} 小时"
+        other: "还有 %{count} 小时"
+      minutes_left:
+        one: "还有 %{count} 分钟"
+        other: "还有 %{count} 分钟"
+      seconds_left:
+        one: "还有 %{count} 秒"
+        other: "还有 %{count} 秒"
+    ranks:
+      first_prize: "一等奖"
+      second_prize: "二等奖"
+      third_prize: "三等奖"
+      nth_prize: "第%{rank}名"
+      first: "第1名"
+      second: "第2名"
+      third: "第3名"
+      nth: "第%{rank}名"

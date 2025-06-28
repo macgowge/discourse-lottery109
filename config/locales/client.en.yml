@@ -18,3 +18,22 @@ en:
       generic_error_client: "An error occurred. Please try again." # Client-side generic error
       network_error_client: "A network error occurred. Please check your connection and try again."
       csrf_token_error: "Could not verify your request. Please refresh the page and try again."
+      # Draw related
+      admin_draw_btn: "Draw Winner"
+      confirm_draw: "Are you sure you want to draw the winner? There are %{entries} participants."
+      drawing: "Drawing winner..."
+      draw_success: "Winner drawn successfully!"
+      draw_failed: "Failed to draw winner, please try again."
+      draw_completed: "Draw completed"
+      winner_announced: "🎉 Congratulations @%{winner}!"
+      winners_announced: "🎉 Congratulations to %{count} winners!"
+      lottery_cancelled: "Lottery cancelled"
+      # Prize related
+      prize_with_count: "%{prizeName} (%{count} prizes)"
+      # Auto draw countdown
+      auto_draw_in: "Auto draw in:"
+      auto_draw_time_up: "Time's up! Auto drawing..."
+      countdown_days: "%{days}d %{hours}h %{minutes}m %{seconds}s"
+      countdown_hours: "%{hours}h %{minutes}m %{seconds}s"
+      countdown_minutes: "%{minutes}m %{seconds}s"
+      countdown_seconds: "%{seconds}s"
