@@ -1,4 +1,6 @@
-class CreateLotteryPluginTables < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class CreateLotteryPluginTables < ActiveRecord::Migration[6.1]
   def up
     # 安全地创建抽奖表
     unless table_exists?(:lottery_plugin_lotteries)
@@ -75,6 +77,6 @@ class CreateLotteryPluginTables < ActiveRecord::Migration
 
     add_index(table, columns, options)
   rescue => e
-    Rails.logger.warn "Failed to add index #{index_name}: #{e.message}"
+    puts "LotteryPlugin: Warning - Failed to add index #{index_name}: #{e.message}"
   end
 end
