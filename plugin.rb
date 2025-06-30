@@ -10,7 +10,7 @@
 enabled_site_setting :lottery_enabled
 
 register_asset "stylesheets/common/lottery.scss"
-register_asset "javascripts/discourse/initializers/lottery.js.es6"
+# register_asset "javascripts/discourse/initializers/lottery.js.es6"
 
 after_initialize do
   Rails.logger.info "LotteryPlugin: =================== START of after_initialize (v1.0.9) ==================="
