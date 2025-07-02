@@ -41,7 +41,7 @@ module LotteryPlugin
           title: "帖子 #{post.id} 的示例抽奖",
           prize_name: "一份惊喜奖品!",
           points_cost: 5,
-          max_entries: 50
+          max_entries: 50,
           prize_count: 1,
           status: "active"
         )
@@ -67,7 +67,7 @@ module LotteryPlugin
           prize_name: params[:prize] || "神秘奖品",
           points_cost: params[:cost] || 0,
           max_entries: params[:max],
-          prize_count: params[:count] || 1
+          prize_count: params[:count] || 1,
           status: "active"
         }
 
