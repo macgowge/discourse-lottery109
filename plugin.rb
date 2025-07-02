@@ -14,6 +14,11 @@ register_asset "stylesheets/common/lottery.scss"
 
 after_initialize do
   Rails.logger.info "LotteryPlugin: =================== START of after_initialize (v1.0.9) ==================="
+  # 自动加载 migration 路径
+  if defined?(Rails::Server)
+    Rails.application.config.paths['db/migrate'] << File.expand_path("../db/migrate", __FILE__)
+  end
+  
   begin
     module ::LotteryPlugin
       PLUGIN_NAME ||= "discourse-lottery".freeze
