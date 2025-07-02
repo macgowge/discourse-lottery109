@@ -42,6 +42,8 @@ module LotteryPlugin
           prize_name: "一份惊喜奖品!",
           points_cost: 5,
           max_entries: 50
+          prize_count: 1,
+          status: "active"
         )
         Rails.logger.info "LotteryPlugin Parser: Successfully created default lottery ##{created_lottery.id} for post ID #{post.id}"
       rescue ActiveRecord::RecordInvalid => e
@@ -66,6 +68,7 @@ module LotteryPlugin
           points_cost: params[:cost] || 0,
           max_entries: params[:max],
           prize_count: params[:count] || 1
+          status: "active"
         }
 
         # 添加自动开奖时间
