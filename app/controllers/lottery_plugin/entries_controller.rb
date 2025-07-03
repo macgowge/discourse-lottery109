@@ -3,6 +3,9 @@ module LotteryPlugin
     requires_plugin LotteryPlugin::PLUGIN_NAME # 使用常量指定插件名称
     before_action :ensure_logged_in # 用户必须登录才能参与
 
+    # chatgpt添加这行代码
+    protect_from_forgery with: :exception, unless: -> { request.format.json? }
+
     def create
       lottery = LotteryPlugin::Lottery.find_by(id: params[:lottery_id])
       unless lottery
