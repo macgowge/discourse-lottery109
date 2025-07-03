@@ -257,21 +257,6 @@ export default apiInitializer("1.0.1", (api) => { // 版本化您的初始化器
       // container.appendChild(messageArea); // 移动到按钮之后添加
 
       // 参与按钮事件
-    /*  if (button) {
-        button.addEventListener("click", async () => {
-        if (cost > 0) {
-          const modal = api.container.lookup("service:modal");
-          modal.confirm({
-            message: I18n.t("js.lottery.confirm_cost_participation", { cost }),
-            didConfirm: async () => {
-              await tryJoinLottery();
-            }
-          });
-        } else {
-          await tryJoinLottery();
-        }
-        });
-      }*/
       button.addEventListener("click", () => {
         if (cost > 0) {
           bootbox.confirm(I18n.t("js.lottery.confirm_cost_participation", { cost }), async (result) => {
@@ -286,17 +271,6 @@ export default apiInitializer("1.0.1", (api) => { // 版本化您的初始化器
     //chatgpt修改
 
       // 管理员开奖按钮事件
-    /*  if (adminButton) {
-        adminButton.addEventListener("click", async () => {
-          const modal = api.container.lookup("service:modal");
-          modal.confirm({
-            message: I18n.t("js.lottery.confirm_draw", { entries: currentEntries }),
-            didConfirm: async () => {
-              await drawLottery();
-            }
-          });
-        });
-      }*/
       adminButton.addEventListener("click", () => {
         bootbox.confirm(I18n.t("js.lottery.confirm_draw", { entries: currentEntries }), async (result) => {
           if (result) {
