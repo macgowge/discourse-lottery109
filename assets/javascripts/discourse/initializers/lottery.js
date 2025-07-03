@@ -257,7 +257,7 @@ export default apiInitializer("1.0.1", (api) => { // 版本化您的初始化器
       // container.appendChild(messageArea); // 移动到按钮之后添加
 
       // 参与按钮事件
-      if (button) {
+    /*  if (button) {
         button.addEventListener("click", async () => {
         if (cost > 0) {
           const modal = api.container.lookup("service:modal");
@@ -271,10 +271,22 @@ export default apiInitializer("1.0.1", (api) => { // 版本化您的初始化器
           await tryJoinLottery();
         }
         });
-      }
+      }*/
+      button.addEventListener("click", () => {
+        if (cost > 0) {
+          bootbox.confirm(I18n.t("js.lottery.confirm_cost_participation", { cost }), async (result) => {
+            if (result) {
+              await tryJoinLottery();
+            }
+          });
+        } else {
+          tryJoinLottery();
+        }
+      });
+    //chatgpt修改
 
       // 管理员开奖按钮事件
-      if (adminButton) {
+    /*  if (adminButton) {
         adminButton.addEventListener("click", async () => {
           const modal = api.container.lookup("service:modal");
           modal.confirm({
@@ -284,7 +296,15 @@ export default apiInitializer("1.0.1", (api) => { // 版本化您的初始化器
             }
           });
         });
-      }
+      }*/
+      adminButton.addEventListener("click", () => {
+        bootbox.confirm(I18n.t("js.lottery.confirm_draw", { entries: currentEntries }), async (result) => {
+          if (result) {
+            await drawLottery();
+          }
+        });
+      });
+    //chatgpt修改
 
       async function tryJoinLottery() {
         button.disabled = true;
