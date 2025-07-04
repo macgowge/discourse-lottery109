@@ -220,6 +220,11 @@ export default apiInitializer("1.0.1", (api) => {
           body: JSON.stringify({ lottery_id: lotteryId }),
         });
 
+        const contentType = response.headers.get("content-type") || "";
+        if (!contentType.includes("application/json")) {
+          throw new Error("服务器返回了非JSON响应，可能是错误页面");
+        }
+        
         const data = await response.json();
 
         if (response.ok && data.success) {
@@ -267,6 +272,11 @@ export default apiInitializer("1.0.1", (api) => {
           },
         });
 
+        const contentType = response.headers.get("content-type") || "";
+        if (!contentType.includes("application/json")) {
+          throw new Error("服务器返回了非JSON响应，可能是错误页面");
+        }
+        
         const data = await response.json();
 
         if (response.ok && data.success) {
